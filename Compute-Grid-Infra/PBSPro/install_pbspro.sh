@@ -14,10 +14,8 @@ fi
 
 # Set user args
 MASTER_HOSTNAME=$1
-#DNS_SERVER_NAME=$3
-#DNS_SERVER_IP=$4
-dnsServerName=$3
-dnsServerIP=$4
+DNS_SERVER_NAME=$3
+DNS_SERVER_IP=$4
 QNAME=workq
 PBS_MANAGER=hpcuser
 
@@ -37,12 +35,9 @@ set_DNS()
 {
     sed -i  "s/PEERDNS=yes/PEERDNS=no/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 	sed -i  "s/search/#search/g" /etc/resolv.conf	
-	#echo "search $DNS_SERVER_NAME">>/etc/resolv.conf	
-	echo "search $dnsServerName">>/etc/resolv.conf
-	echo "domain $dnsServerName">>/etc/resolv.conf
-	echo "nameserver $dnsServerIP">>/etc/resolv.conf
-	#echo "domain $DNS_SERVER_NAME">>/etc/resolv.conf
-	#echo "nameserver $DNS_SERVER_IP">>/etc/resolv.conf
+	echo "search $DNS_SERVER_NAME">>/etc/resolv.conf	
+	echo "domain $DNS_SERVER_NAME">>/etc/resolv.conf
+	echo "nameserver $DNS_SERVER_IP">>/etc/resolv.conf
 	sed -i  "s/networks:   files/networks:   files dns [NOTFOUND=return]/g"  /etc/nsswitch.conf
 	sed -i  "s/hosts:      files dns/hosts: files dns [NOTFOUND=return]/g"  /etc/nsswitch.conf
 	service network restart
