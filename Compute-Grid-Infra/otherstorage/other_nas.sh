@@ -48,9 +48,9 @@ HPC_GID=7007
 #
 #setup_data_disks()
 ##{
-    nasname="$1"
-    nasdevice="$2"
-    mountPoint="$3"
+    nasName="$1"
+    nasDevice="$2"
+    nasMount="$3"
 	echo "$nasname $nasdevice $mountPoint"
 #    raidDevice="$4"
 #    createdPartitions=""
@@ -81,7 +81,7 @@ HPC_GID=7007
 
 #        if [ "$filesystem" == "xfs" ]; then
 #            mkfs -t $filesystem /dev/$raidDevice
-            echo "$nasname:$nasdevice $mountPoint  nfs rsize=65536,wsize=65536,_netdev,nofail 0 0" >> /etc/fstab
+            echo "$nasName:$nasDevice $nasMount nfs rsize=65536,wsize=65536,_netdev,nofail 0 0" >> /etc/fstab
 #        else
 #            mkfs.ext4 -i 2048 -I 512 -J size=400 -Odir_index,filetype /dev/$raidDevice
 #            sleep 5
