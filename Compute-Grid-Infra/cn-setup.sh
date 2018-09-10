@@ -148,6 +148,7 @@ setup_user()
     mkdir -p $SHARE_SCRATCH
 
 	echo "$MASTER_NAME:$SHARE_HOME $SHARE_HOME    nfs4    rw,auto,_netdev 0 0" >> /etc/fstab
+	echo "$NAS_NAME:NAS_DEVICE $NAS_MOUNT nfs4 rsize=65536,wisze=65536,auto,_netdev 0 0" >> /etc/fstab
 	mount -a
 	mount
    
